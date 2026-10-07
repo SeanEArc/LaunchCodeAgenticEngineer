@@ -1,3 +1,5 @@
+# PRD (Product Requirements Document)
+
 This workflow reviews a repository's Docker setup by running the documented build command, reporting the outcome, and recommending whether the repository is ready to proceed.
 
 ## Trigger
@@ -28,7 +30,7 @@ A workflow run passes when all applicable criteria below are met; a failed or bl
 
 - The report identifies the documentation used, the exact documented build command, and the working directory; the run record shows that this command was executed inside the sandbox from `module_1` when execution was possible.
 - For an executed build, the run record includes the captured build output and exit status, and the report correctly labels the build as successful or failed based on that evidence.
-- The summary includes every warning and error present in the captured build output; if none are present, it explicitly states that no warnings or errors were reported.
+- The summary includes all important warnings and every error present in the captured build output. Important warnings are those that could affect image correctness, security, or the ability to build or run the image. If no important warnings or errors are present, the summary explicitly states that none were reported.
 - A successful build receives a recommendation to proceed, while a failed build receives a recommendation against proceeding; each recommendation includes a rationale tied to the build evidence.
 - If the documented command is missing or unclear, the agent stops without guessing a command, identifies the missing information, and states that readiness could not be verified.
 - If Docker is unavailable or the sandbox blocks execution, the report identifies the blocker and states that readiness could not be verified without claiming that the image built successfully or failed.
